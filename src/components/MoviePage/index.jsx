@@ -15,40 +15,36 @@ const MoviePage = ({ match }) => {
   }, [dispatch, match.params.id]);
 
   return (
-    <>
-      <section className="container">
-        {movie.loading ? (
-          <div>Loading ...</div>
-        ) : movie.error ? (
-          <div>{movie.error}</div>
-        ) : (
-          <div className="movie-wrapper flex">
-            {data.poster_path && (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-                alt="poster"
-              />
-            )}
-            <div className="movie-info flex-column">
-              <h1>{data.title}</h1>
-              {data.tagline && (
-                <span className="tagline">"{data.tagline}"</span>
-              )}
-              <p>Released: {data.release_date}</p>
-              <p>
-                Genres:{" "}
-                {data.genres &&
-                  data.genres.map((item, i) =>
-                    i < data.genres.length - 1 ? `${item.name}, ` : item.name
-                  )}
-              </p>
-              <p>Runtime: {data.runtime} min</p>
-              <p className="overview">{data.overview}</p>
-            </div>
+    <section className="container">
+      {movie.loading ? (
+        <div>Loading ...</div>
+      ) : movie.error ? (
+        <div>{movie.error}</div>
+      ) : (
+        <div className="movie-wrapper flex">
+          {data.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+              alt="poster"
+            />
+          )}
+          <div className="movie-info flex-column">
+            <h1>{data.title}</h1>
+            {data.tagline && <span className="tagline">"{data.tagline}"</span>}
+            <p>Released: {data.release_date}</p>
+            <p>
+              Genres:{" "}
+              {data.genres &&
+                data.genres.map((item, i) =>
+                  i < data.genres.length - 1 ? `${item.name}, ` : item.name
+                )}
+            </p>
+            <p>Runtime: {data.runtime} min</p>
+            <p className="overview">{data.overview}</p>
           </div>
-        )}
-      </section>
-    </>
+        </div>
+      )}
+    </section>
   );
 };
 
